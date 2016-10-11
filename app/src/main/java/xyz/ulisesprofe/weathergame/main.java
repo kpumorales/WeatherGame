@@ -27,6 +27,7 @@ public class main extends AppCompatActivity {
                         // Do something after 5s = 5000ms
                         Intent i = new Intent(main.this, Game.class);
                         startActivity(i);
+
                     }
                 }, 2000);
 
