@@ -81,7 +81,7 @@ public class Game extends AppCompatActivity {
                     Toast.makeText(Game.this, "Gastaste una ayuda, quedan: "+cont, Toast.LENGTH_SHORT).show();
                     if(cont==0) {
                         zoomImage.setEnabled(false);
-                        zoomImage.setBackgroundResource(R.drawable.zoomgris);
+                        zoomImage.setBackgroundResource(R.drawable.zoom2);
                         Toast.makeText(Game.this, "Acabaste tu ayuda", Toast.LENGTH_SHORT).show();
                     }
                 }
