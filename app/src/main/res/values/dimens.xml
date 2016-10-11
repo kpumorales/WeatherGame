@@ -1,0 +1,10 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="boton">95dp</dimen>
+    <dimen name="boton2">80dp</dimen>
+    <dimen name="gameframelayout">286dp</dimen>
+    <dimen name="planetalogo">280dp</dimen>
+    <dimen name="layoutfeedbackheight">120dp</dimen>
+</resources>
