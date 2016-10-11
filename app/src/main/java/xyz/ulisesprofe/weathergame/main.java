@@ -1,6 +1,7 @@
 package xyz.ulisesprofe.weathergame;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,8 +20,16 @@ public class main extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(main.this, Game.class);
-                startActivity(i);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+                        Intent i = new Intent(main.this, Game.class);
+                        startActivity(i);
+                    }
+                }, 2000);
+
             }
         });
     }
