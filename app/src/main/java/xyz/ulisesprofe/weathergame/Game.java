@@ -51,7 +51,6 @@ public class Game extends AppCompatActivity {
         //mp.start();
         buttons=findButtons();
         moveCounter = (TextView) findViewById(R.id.MoveCounter);
-        //feedbackText = (TextView) findViewById(R.id.FeedbackText);
         feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
         chance= (TextView) findViewById(R.id.chance);
         t=(TextView)findViewById(R.id.textView6);
@@ -76,7 +75,6 @@ public class Game extends AppCompatActivity {
                 zoomImage.setBackgroundResource(R.drawable.zoom);
                 cont=3;
                 chance.setText(String.valueOf(cont));
-
             }
         });
 
@@ -97,8 +95,6 @@ public class Game extends AppCompatActivity {
         });
         Collections.shuffle(cells); //random cells array
         fill_grid();
-
-
         for (int i = 1; i < 9; i++) {
             buttons[i].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -106,8 +102,6 @@ public class Game extends AppCompatActivity {
                 }
             });
         }
-
-
         moveCounter.setText("0");
         Toast.makeText(Game.this, R.string.game_feedback_text, Toast.LENGTH_SHORT).show();
     }
@@ -125,8 +119,6 @@ public class Game extends AppCompatActivity {
         b[8] = (Button) findViewById(R.id.Button08);
         return b;
     }
-
-
     public void makeMove(final Button b) {
         bad_move=true;
         int b_text,b_pos,zuk_pos;
@@ -207,20 +199,20 @@ public class Game extends AppCompatActivity {
         }
         MediaPlayer win = MediaPlayer.create(this,R.raw.win);
         win.start();
-        feedbackText.setText("Ganaste");
-        scoreWin();
+        //feedbackText.setText("Ganaste");
+        //scoreWin();
         buttons[0].setBackgroundResource(R.drawable.f0);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        //final Handler handler = new Handler();
+        //handler.postDelayed(new Runnable() {
+          //  @Override
+           // public void run() {
                 // Do something after 5s = 5000ms
                 Intent i = new Intent(Game.this, Win.class);
-                i.putExtra("mov",movimientos1);
+         //       i.putExtra("mov",movimientos1);
                 startActivity(i);
-            }
-        }, 2000);
+        //    }
+        //}, 2000);
 
     }
 
@@ -347,4 +339,23 @@ public class Game extends AppCompatActivity {
     }
 
 
+    public void click(View view)
+    {
+        MediaPlayer win = MediaPlayer.create(this,R.raw.win);
+        win.start();
+        //feedbackText.setText("Ganaste");
+        //scoreWin();
+        buttons[0].setBackgroundResource(R.drawable.f0);
+
+        //final Handler handler = new Handler();
+        //handler.postDelayed(new Runnable() {
+            //@Override
+           // public void run() {
+                // Do something after 5s = 5000ms
+                Intent i = new Intent(Game.this, Win.class);
+                //       i.putExtra("mov",movimientos1);
+                startActivity(i);
+        //    }
+        //}, 2000);
+    }
 }

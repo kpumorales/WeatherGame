@@ -108,13 +108,20 @@
             android:textSize="0sp" />
     </FrameLayout>
 
-        <Button
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Shuffle"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.05"
-            android:text="@string/shuffle" />
+        android:text="@string/shuffle"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resolver"
+        android:id="@+id/button17"
+        android:layout_gravity="center_horizontal"
+        android:onClick="click"/>
 
     <RelativeLayout
             android:layout_width="match_parent"
