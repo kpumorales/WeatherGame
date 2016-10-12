@@ -9,6 +9,7 @@ import android.content.Context;
  * Created by jozhema on 12/10/2016.
  */
 public class bda extends SQLiteOpenHelper {
+
     //Sentencia SQL para crear la tabla de Usuarios
             String sqlCreate = "CREATE TABLE Usuarios (codigo INTEGER, nombre TEXT)";
     public bda(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
