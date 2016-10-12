@@ -7,19 +7,20 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Win extends AppCompatActivity {
-    //
-    //Bundle b;
-    //TextView t;
+    String nombre;
+    Bundle b;
+    TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win);
+       // score();
     }
-    //public void score(View view) {
-      //  t=(TextView)findViewById(R.id.textView);
-       // b=getIntent().getExtras();
-        //nombre=b.getString("mov");
+    public void score() {
+        t=(TextView)findViewById(R.id.textView);
+        b=getIntent().getExtras();
+        nombre=b.getString("mov");
 
-        //t.setText(nombre);
-    //}
+        t.setText(nombre);
+    }
 }
