@@ -33,6 +33,10 @@ public class Game extends AppCompatActivity {
         private static final Integer[] goal = new Integer[] {0,1,2,3,4,5,6,7,8};
         private String[] array=new String[]{"Cuida el agua","No tires basura","Recicla","Apaga las luces"};
         static int cont=3;
+        TextView t;
+        Bundle b;
+
+    String nombre,mensaje,numero,movimientos1="0";
         private ArrayList<Integer> cells = new ArrayList<Integer>();
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -315,6 +319,17 @@ public class Game extends AppCompatActivity {
                 }
             }
             return i;
+
         }
+
+    public void nuevo(View view) {
+        Intent nuevol = new Intent(this, score.class);
+        mensaje=t.getText().toString();
+        // movimientos1=moveCounter.getText().toString();
+        nuevol.putExtra("info",mensaje);
+        nuevol.putExtra("moviemientos",movimientos1);
+        startActivity(nuevol);
     }
+
+}
 

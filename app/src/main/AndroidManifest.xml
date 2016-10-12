@@ -27,7 +27,8 @@
             android:name=".Help"
             android:screenOrientation="portrait" />
         <activity android:name=".Zoom" />
-        <activity android:name=".Win"></activity>
+        <activity android:name=".Win" />
+        <activity android:name=".score"></activity>
     </application>
 
 </manifest>
