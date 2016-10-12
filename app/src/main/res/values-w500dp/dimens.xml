@@ -7,5 +7,5 @@
     <dimen name="gameframelayout">480dp</dimen>
     <dimen name="layoutfeedbackheight">220dp</dimen>
     <dimen name="planetalogo">500dp</dimen>
-
+    <dimen name="nombreGame">50sp</dimen>
 </resources>

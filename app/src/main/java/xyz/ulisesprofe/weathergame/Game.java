@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import static android.view.Gravity.LEFT;
 import static android.view.Gravity.TOP;
@@ -38,7 +40,7 @@ public class Game extends AppCompatActivity {
     Bundle b;
 
     String nombre,mensaje,numero,movimientos1="0";
-    private ArrayList<Integer> cells = new ArrayList<Integer>();
+    private ArrayList<Integer> cells = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class Game extends AppCompatActivity {
         //mp.start();
         buttons=findButtons();
         moveCounter = (TextView) findViewById(R.id.MoveCounter);
-        feedbackText = (TextView) findViewById(R.id.FeedbackText);
+        //feedbackText = (TextView) findViewById(R.id.FeedbackText);
         feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
         chance= (TextView) findViewById(R.id.chance);
         t=(TextView)findViewById(R.id.textView6);
@@ -172,7 +174,7 @@ public class Game extends AppCompatActivity {
                 break;
         }
 
-        if(bad_move==true)
+        if(bad_move)
         {
             //Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
             MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
@@ -199,7 +201,7 @@ public class Game extends AppCompatActivity {
 
         for(int i=0;i<9;i++)
         {
-            if(cells.get(i)!=goal[i])
+            if(!Objects.equals(cells.get(i), goal[i]))
             {
                 return;
             }
@@ -303,6 +305,7 @@ public class Game extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.exitmenu:
                 finish();
+                System.exit(0);
                 break;
             case R.id.helpmenu:
                 Intent intent = new Intent(getApplicationContext(), Help.class);
@@ -328,7 +331,18 @@ public class Game extends AppCompatActivity {
         return i;
 
     }
-
+    //boton back del celular
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent i = new Intent(Game.this,main.class);
+            startActivity(i);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 }
