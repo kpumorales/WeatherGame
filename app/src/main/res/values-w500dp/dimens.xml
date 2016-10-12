@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">60dp</dimen>
+    <dimen name="activity_vertical_margin">50dp</dimen>
+    <dimen name="boton">159dp</dimen>
+    <dimen name="boton2">160dp</dimen>
+    <dimen name="gameframelayout">480dp</dimen>
+    <dimen name="layoutfeedbackheight">220dp</dimen>
+    <dimen name="planetalogo">500dp</dimen>
+
+</resources>

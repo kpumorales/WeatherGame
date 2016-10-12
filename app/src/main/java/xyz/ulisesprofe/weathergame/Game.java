@@ -42,11 +42,11 @@ public class Game extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.game);
-            MediaPlayer mp = MediaPlayer.create(this, R.raw.music);
+            //MediaPlayer mp = MediaPlayer.create(this, R.raw.music);
             //float log1=(float)(Math.log(maxVolume-currVolume)/Math.log(maxVolume));
             //mp.setVolume(1-log1);
-            mp.setLooping(true);
-            mp.start();
+            //mp.setLooping(true);
+            //mp.start();
             buttons=findButtons();
             moveCounter = (TextView) findViewById(R.id.MoveCounter);
             feedbackText = (TextView) findViewById(R.id.FeedbackText);
@@ -109,9 +109,8 @@ public class Game extends AppCompatActivity {
 
 
             moveCounter.setText("0");
-            feedbackText.setText(R.string.game_feedback_text);
-
-        }
+            Toast.makeText(Game.this, R.string.game_feedback_text, Toast.LENGTH_SHORT).show();
+            }
         public Button[] findButtons() {
             Button[] b = new Button[9];
 
@@ -176,14 +175,14 @@ public class Game extends AppCompatActivity {
 
             if(bad_move==true)
             {
-                feedbackText.setText("Movimiento no permitido");
+                //Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
                 MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
                 mal.start();
                 return;
             }
             MediaPlayer ok= MediaPlayer.create(this,R.raw.movimiento);
             ok.start();
-            feedbackText.setText("Move permitido");
+            //Toast.makeText(Game.this, "Movimiento permitido", Toast.LENGTH_SHORT).show();
             cells.remove(b_pos);
             cells.add(b_pos, 0);
             cells.remove(zuk_pos);

@@ -17,9 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Game"
-            android:screenOrientation="portrait" />
+        <activity android:name=".Game"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Credits"
             android:screenOrientation="portrait" />
@@ -28,7 +27,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Zoom" />
         <activity android:name=".Win" />
-        <activity android:name=".score"></activity>
+        <activity android:name=".score" />
+        <activity android:name=".Dificil"></activity>
     </application>
 
 </manifest>
