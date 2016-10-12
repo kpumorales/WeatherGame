@@ -18,4 +18,6 @@
     <string name="hintzoom">Ver Imagen</string>
     <string name="score">Puntuacion</string>
     <string name="name">Escribe tu nombre</string>
+    <string name="singin">Escribe tu nombre</string>
+    <string name="setPlayerName">Jugador</string>
 </resources>

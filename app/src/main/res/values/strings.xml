@@ -16,5 +16,6 @@
     <string name="imagefooter">Actuality</string>
     <string name="hintzoom">View Image</string>
     <string name="score">Score</string>
-    <string name="name">Write your name</string>
+    <string name="singin">Write your name</string>
+    <string name="setPlayerName">Player</string>
 </resources>
