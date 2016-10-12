@@ -19,6 +19,7 @@ public class Win extends AppCompatActivity {
         t=(TextView)findViewById(R.id.textView);
         b=getIntent().getExtras();
         nombre=b.getString("mov");
+
         t.setText(nombre);
     }
 }
