@@ -14,7 +14,7 @@ public class Win extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win);
-        score();
+       // score();
     }
     public void score() {
         t=(TextView)findViewById(R.id.textView);
