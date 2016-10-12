@@ -46,7 +46,8 @@
         android:id="@+id/PlayButton"
         android:layout_gravity="center_vertical|bottom"
         android:layout_marginLeft="24dp"
-        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp" />
+        android:background="@drawable/button"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
