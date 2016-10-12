@@ -4,7 +4,7 @@
     <string name="app_name">Juego del Clima </string>
     <string name="exit">Salir</string>
     <string name="feedback_title">Consejos</string>
-    <string name="moves_title">Movimientos:</string>
+    <string name="moves_title">Movimientos</string>
     <string name="game_feedback_text">Mueva una pieza</string>
     <string name="credits">Creditos</string>
     <string name="name1">Ulises Morales Ramirez</string>
@@ -18,6 +18,6 @@
     <string name="hintzoom">Ver Imagen</string>
     <string name="score">Puntuacion</string>
     <string name="name">Escribe tu nombre</string>
-    <string name="singin">Escribe tu nombre máximo 10 caracteres</string>
+    <string name="singin">Escribe tu nombre </string>
     <string name="setPlayerName">Jugador</string>
 </resources>
