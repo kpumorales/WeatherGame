@@ -170,14 +170,14 @@ public class Game extends AppCompatActivity {
 
             if(bad_move==true)
             {
-                Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
                 MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
                 mal.start();
                 return;
             }
             MediaPlayer ok= MediaPlayer.create(this,R.raw.movimiento);
             ok.start();
-            Toast.makeText(Game.this, "Movimiento permitido", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(Game.this, "Movimiento permitido", Toast.LENGTH_SHORT).show();
             cells.remove(b_pos);
             cells.add(b_pos, 0);
             cells.remove(zuk_pos);
