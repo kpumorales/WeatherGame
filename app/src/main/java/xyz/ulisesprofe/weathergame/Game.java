@@ -42,11 +42,11 @@ public class Game extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.game);
-            MediaPlayer mp = MediaPlayer.create(this, R.raw.music);
+            //MediaPlayer mp = MediaPlayer.create(this, R.raw.music);
             //float log1=(float)(Math.log(maxVolume-currVolume)/Math.log(maxVolume));
             //mp.setVolume(1-log1);
-            mp.setLooping(true);
-            mp.start();
+            //mp.setLooping(true);
+            //mp.start();
             buttons=findButtons();
             moveCounter = (TextView) findViewById(R.id.MoveCounter);
             feedbackText = (TextView) findViewById(R.id.FeedbackText);
