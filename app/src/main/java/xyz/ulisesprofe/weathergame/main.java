@@ -52,6 +52,7 @@ public class main extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.exitmenu:
                 finish();
+                System.exit(0);
                 break;
             case R.id.helpmenu:
                 Intent intent = new Intent(getApplicationContext(), Help.class);
