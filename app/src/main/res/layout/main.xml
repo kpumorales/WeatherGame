@@ -57,9 +57,9 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/imglogo"
+        android:layout_above="@+id/PlayButton"
+        android:layout_centerHorizontal="true"
         android:background="#ffffff"
-        android:hint="@string/name"
-        />
+        android:hint="@string/name"/>
+
 </RelativeLayout>

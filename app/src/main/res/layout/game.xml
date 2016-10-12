@@ -154,6 +154,13 @@
                         android:layout_marginTop="0dp"
                     android:textAlignment="center" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Small Text"
+                    android:id="@+id/textView6" />
+
             </LinearLayout>
 
             <LinearLayout

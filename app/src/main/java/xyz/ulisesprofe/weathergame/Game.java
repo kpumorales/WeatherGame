@@ -24,276 +24,276 @@ import static android.view.Gravity.LEFT;
 import static android.view.Gravity.TOP;
 
 public class Game extends AppCompatActivity {
-        private TextView moveCounter;
-        private TextView feedbackText;
-        private TextView feedbackTitleText;
-        private TextView chance;
-        private Button[] buttons;
-        private Boolean bad_move=false;
-        private static final Integer[] goal = new Integer[] {0,1,2,3,4,5,6,7,8};
-        private String[] array=new String[]{"Cuida el agua","No tires basura","Recicla","Apaga las luces"};
-        static int cont=3;
-        TextView t;
-        Bundle b;
-        String nombre,mensaje,numero,movimientos1="0";
+    private TextView moveCounter;
+    private TextView feedbackText;
+    private TextView feedbackTitleText;
+    private TextView chance;
+    private Button[] buttons;
+    private Boolean bad_move=false;
+    private static final Integer[] goal = new Integer[] {0,1,2,3,4,5,6,7,8};
+    private String[] array=new String[]{"Cuida el agua","No tires basura","Recicla","Apaga las luces"};
+    static int cont=3;
+    TextView t;
+    Bundle b;
 
+    String nombre,mensaje,numero,movimientos1="0";
     private ArrayList<Integer> cells = new ArrayList<Integer>();
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.game);
-            //MediaPlayer mp = MediaPlayer.create(this, R.raw.music);
-            //float log1=(float)(Math.log(maxVolume-currVolume)/Math.log(maxVolume));
-            //mp.setVolume(1-log1);
-            //mp.setLooping(true);
-            //mp.start();
-            buttons=findButtons();
-            moveCounter = (TextView) findViewById(R.id.MoveCounter);
-            feedbackText = (TextView) findViewById(R.id.FeedbackText);
-            feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
-            chance= (TextView) findViewById(R.id.chance);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game);
+        //MediaPlayer mp = MediaPlayer.create(this, R.raw.music);
+        //float log1=(float)(Math.log(maxVolume-currVolume)/Math.log(maxVolume));
+        //mp.setVolume(1-log1);
+        //mp.setLooping(true);
+        //mp.start();
+        buttons=findButtons();
+        moveCounter = (TextView) findViewById(R.id.MoveCounter);
+        feedbackText = (TextView) findViewById(R.id.FeedbackText);
+        feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
+        chance= (TextView) findViewById(R.id.chance);
+        t=(TextView)findViewById(R.id.textView6);
+        b=getIntent().getExtras();
+        nombre=b.getString("info");
+        t.setText(nombre);
+        for(int i=0;i<9;i++)
+        {
+            this.cells.add(i);
+        }
+        Button btn1 = (Button) findViewById(R.id.Shuffle);
+        final ImageView zoomImage =(ImageView) findViewById(R.id.zoomImage);
 
-            t=(TextView)findViewById(R.id.textView6);
-            b=getIntent().getExtras();
-            nombre=b.getString("info");
-            t.setText(nombre);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.shuffle(cells); //random cells array
+                fill_grid();
+                moveCounter.setText("0");
+                buttons[0].setBackgroundResource(R.drawable.transparente);
+                zoomImage.setEnabled(true);
+                zoomImage.setBackgroundResource(R.drawable.zoom);
+                cont=3;
+                chance.setText(String.valueOf(cont));
 
-            for(int i=0;i<9;i++)
-            {
-                this.cells.add(i);
             }
-            Button btn1 = (Button) findViewById(R.id.Shuffle);
-            final ImageView zoomImage =(ImageView) findViewById(R.id.zoomImage);
+        });
 
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
+        zoomImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Game.this, Zoom.class);
+                startActivity(i);
+                cont--;
+                chance.setText(String.valueOf(cont));
+                Toast.makeText(Game.this, "Gastaste una ayuda, quedan: "+cont, Toast.LENGTH_SHORT).show();
+                if(cont==0) {
+                    zoomImage.setEnabled(false);
+                    zoomImage.setBackgroundResource(R.drawable.zoom2);
+                    Toast.makeText(Game.this, "Acabaste tu ayuda", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        Collections.shuffle(cells); //random cells array
+        fill_grid();
+
+
+        for (int i = 1; i < 9; i++) {
+            buttons[i].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Collections.shuffle(cells); //random cells array
-                    fill_grid();
-                    moveCounter.setText("0");
-                    buttons[0].setBackgroundResource(R.drawable.transparente);
-                    zoomImage.setEnabled(true);
-                    zoomImage.setBackgroundResource(R.drawable.zoom);
-                    cont=3;
-                    chance.setText(String.valueOf(cont));
-
+                    makeMove((Button) v);
                 }
             });
-
-            zoomImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(Game.this, Zoom.class);
-                    startActivity(i);
-                    cont--;
-                    chance.setText(String.valueOf(cont));
-                    Toast.makeText(Game.this, "Gastaste una ayuda, quedan: "+cont, Toast.LENGTH_SHORT).show();
-                    if(cont==0) {
-                        zoomImage.setEnabled(false);
-                        zoomImage.setBackgroundResource(R.drawable.zoom2);
-                        Toast.makeText(Game.this, "Acabaste tu ayuda", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            Collections.shuffle(cells); //random cells array
-            fill_grid();
-
-
-            for (int i = 1; i < 9; i++) {
-                buttons[i].setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        makeMove((Button) v);
-                    }
-                });
-            }
-
-
-            moveCounter.setText("0");
-            Toast.makeText(Game.this, R.string.game_feedback_text, Toast.LENGTH_SHORT).show();
-            }
-        public Button[] findButtons() {
-            Button[] b = new Button[9];
-
-            b[0] = (Button) findViewById(R.id.Button00);
-            b[1] = (Button) findViewById(R.id.Button01);
-            b[2] = (Button) findViewById(R.id.Button02);
-            b[3] = (Button) findViewById(R.id.Button03);
-            b[4] = (Button) findViewById(R.id.Button04);
-            b[5] = (Button) findViewById(R.id.Button05);
-            b[6] = (Button) findViewById(R.id.Button06);
-            b[7] = (Button) findViewById(R.id.Button07);
-            b[8] = (Button) findViewById(R.id.Button08);
-            return b;
         }
 
 
-        public void makeMove(final Button b) {
-            bad_move=true;
-            int b_text,b_pos,zuk_pos;
-            b_text=Integer.parseInt((String) b.getText());//toma el texto del boton
-            b_pos=find_pos(b_text);//lo busca en el arreglo find
-            zuk_pos=find_pos(0);//busca la posicion del 0 en el find
-            switch(zuk_pos)
-            {
-                case(0):
-                    if(b_pos==1||b_pos==3)
-                        bad_move=false;
-                    break;
-                case(1):
-                    if(b_pos==0||b_pos==2||b_pos==4)
-                        bad_move=false;
-                    break;
-                case(2):
-                    if(b_pos==1||b_pos==5)
-                        bad_move=false;
-                    break;
-                case(3):
-                    if(b_pos==0||b_pos==4||b_pos==6)
-                        bad_move=false;
-                    break;
-                case(4):
-                    if(b_pos==1||b_pos==3||b_pos==5||b_pos==7)
-                        bad_move=false;
-                    break;
-                case(5):
-                    if(b_pos==2||b_pos==4||b_pos==8)
-                        bad_move=false;
-                    break;
-                case(6):
-                    if(b_pos==3||b_pos==7)
-                        bad_move=false;
-                    break;
-                case(7):
-                    if(b_pos==4||b_pos==6||b_pos==8)
-                        bad_move=false;
-                    break;
-                case(8):
-                    if(b_pos==5||b_pos==7)
-                        bad_move=false;
-                    break;
-            }
+        moveCounter.setText("0");
+        Toast.makeText(Game.this, R.string.game_feedback_text, Toast.LENGTH_SHORT).show();
+    }
+    public Button[] findButtons() {
+        Button[] b = new Button[9];
 
-            if(bad_move==true)
+        b[0] = (Button) findViewById(R.id.Button00);
+        b[1] = (Button) findViewById(R.id.Button01);
+        b[2] = (Button) findViewById(R.id.Button02);
+        b[3] = (Button) findViewById(R.id.Button03);
+        b[4] = (Button) findViewById(R.id.Button04);
+        b[5] = (Button) findViewById(R.id.Button05);
+        b[6] = (Button) findViewById(R.id.Button06);
+        b[7] = (Button) findViewById(R.id.Button07);
+        b[8] = (Button) findViewById(R.id.Button08);
+        return b;
+    }
+
+
+    public void makeMove(final Button b) {
+        bad_move=true;
+        int b_text,b_pos,zuk_pos;
+        b_text=Integer.parseInt((String) b.getText());//toma el texto del boton
+        b_pos=find_pos(b_text);//lo busca en el arreglo find
+        zuk_pos=find_pos(0);//busca la posicion del 0 en el find
+        switch(zuk_pos)
+        {
+            case(0):
+                if(b_pos==1||b_pos==3)
+                    bad_move=false;
+                break;
+            case(1):
+                if(b_pos==0||b_pos==2||b_pos==4)
+                    bad_move=false;
+                break;
+            case(2):
+                if(b_pos==1||b_pos==5)
+                    bad_move=false;
+                break;
+            case(3):
+                if(b_pos==0||b_pos==4||b_pos==6)
+                    bad_move=false;
+                break;
+            case(4):
+                if(b_pos==1||b_pos==3||b_pos==5||b_pos==7)
+                    bad_move=false;
+                break;
+            case(5):
+                if(b_pos==2||b_pos==4||b_pos==8)
+                    bad_move=false;
+                break;
+            case(6):
+                if(b_pos==3||b_pos==7)
+                    bad_move=false;
+                break;
+            case(7):
+                if(b_pos==4||b_pos==6||b_pos==8)
+                    bad_move=false;
+                break;
+            case(8):
+                if(b_pos==5||b_pos==7)
+                    bad_move=false;
+                break;
+        }
+
+        if(bad_move==true)
+        {
+            //Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
+            MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
+            mal.start();
+            return;
+        }
+        MediaPlayer ok= MediaPlayer.create(this,R.raw.movimiento);
+        ok.start();
+        //Toast.makeText(Game.this, "Movimiento permitido", Toast.LENGTH_SHORT).show();
+        cells.remove(b_pos);
+        cells.add(b_pos, 0);
+        cells.remove(zuk_pos);
+        cells.add(zuk_pos,b_text);
+
+
+        fill_grid();
+        moveCounter.setText(Integer.toString(Integer.parseInt((String) moveCounter.getText())+1));
+        int num=Integer.parseInt((String) moveCounter.getText());
+        if( num%10==0)
+        {
+            double aleatorio = Math.floor(Math.random()*(array.length));
+            feedbackTitleText.setText(array[(int) aleatorio]);
+        }
+
+        for(int i=0;i<9;i++)
+        {
+            if(cells.get(i)!=goal[i])
             {
-                //Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
-                MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
-                mal.start();
                 return;
             }
-            MediaPlayer ok= MediaPlayer.create(this,R.raw.movimiento);
-            ok.start();
-            //Toast.makeText(Game.this, "Movimiento permitido", Toast.LENGTH_SHORT).show();
-            cells.remove(b_pos);
-            cells.add(b_pos, 0);
-            cells.remove(zuk_pos);
-            cells.add(zuk_pos,b_text);
+        }
+        MediaPlayer win = MediaPlayer.create(this,R.raw.win);
+        win.start();
+        feedbackText.setText("Ganaste");
+        scoreWin();
+        buttons[0].setBackgroundResource(R.drawable.f0);
 
-
-            fill_grid();
-            moveCounter.setText(Integer.toString(Integer.parseInt((String) moveCounter.getText())+1));
-            int num=Integer.parseInt((String) moveCounter.getText());
-            if( num%10==0)
-            {
-                double aleatorio = Math.floor(Math.random()*(array.length));
-                feedbackTitleText.setText(array[(int) aleatorio]);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                Intent i = new Intent(Game.this, Win.class);
+                i.putExtra("mov",movimientos1);
+                startActivity(i);
             }
+        }, 2000);
 
-            for(int i=0;i<9;i++)
-            {
-                if(cells.get(i)!=goal[i])
-                {
-                    return;
-                }
-            }
-            MediaPlayer win = MediaPlayer.create(this,R.raw.win);
-            win.start();
-            feedbackText.setText("Ganaste");
-            puntuacion();
-            buttons[0].setBackgroundResource(R.drawable.f0);
+    }
 
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Do something after 5s = 5000ms
-                    Intent i = new Intent(Game.this, Win.class);
-                    startActivity(i);
-                }
-            }, 2000);
-
-            }
-
-    private void puntuacion() {
+    private void scoreWin() {
         movimientos1=moveCounter.getText().toString();
+
     }
 
     public void fill_grid()
+    {
+        for(int i=0;i<9;i++)
         {
-            for(int i=0;i<9;i++)
+            int text=cells.get(i);
+            FrameLayout.LayoutParams absParams =(FrameLayout.LayoutParams)buttons[text].getLayoutParams();
+            switch(i)
             {
-                int text=cells.get(i);
-                FrameLayout.LayoutParams absParams =(FrameLayout.LayoutParams)buttons[text].getLayoutParams();
-                switch(i)
-                {
-                    case(0):
-                        absParams.gravity = Gravity.TOP|Gravity.LEFT ;
-                        buttons[text].setLayoutParams(absParams);
+                case(0):
+                    absParams.gravity = Gravity.TOP|Gravity.LEFT ;
+                    buttons[text].setLayoutParams(absParams);
                     break;
-                    case(1):
-                        absParams.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL ;
-                        //absParams.leftMargin= 140;
-                        //absParams.topMargin = 0;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
-                    case(2):
-                        absParams.gravity= Gravity.TOP|Gravity.RIGHT ;
-                        //absParams.leftMargin= 280;
-                        //absParams.topMargin = 0;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
-                    case(3):
-                        absParams.gravity = Gravity.LEFT|Gravity.CENTER_VERTICAL ;
-                        //absParams.leftMargin= 0;
-                        //absParams.topMargin = 94;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
-                    case(4):
-                        absParams.gravity = Gravity.CENTER;
-                        //absParams.leftMargin=95;
-                        //absParams.topMargin =94;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
-                    case(5):
-                        absParams.gravity = Gravity.CENTER_VERTICAL|Gravity.RIGHT;
-                        //absParams.leftMargin= 190;
-                        //absParams.topMargin =94;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
-                    case(6):
-                        absParams.gravity = Gravity.LEFT |Gravity.BOTTOM;
-                        //absParams.leftMargin= 0;
-                        //absParams.topMargin = 188;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
-                    case(7):
-                        absParams.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
-                        // absParams.leftMargin= 95;
-                        //absParams.topMargin = 188;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
-                    case(8):
-                        absParams.gravity = Gravity.BOTTOM|Gravity.RIGHT ;
-                        //absParams.leftMargin= 190;
-                        //absParams.topMargin = 188;
-                        buttons[text].setLayoutParams(absParams);
-                        break;
+                case(1):
+                    absParams.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL ;
+                    //absParams.leftMargin= 140;
+                    //absParams.topMargin = 0;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
+                case(2):
+                    absParams.gravity= Gravity.TOP|Gravity.RIGHT ;
+                    //absParams.leftMargin= 280;
+                    //absParams.topMargin = 0;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
+                case(3):
+                    absParams.gravity = Gravity.LEFT|Gravity.CENTER_VERTICAL ;
+                    //absParams.leftMargin= 0;
+                    //absParams.topMargin = 94;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
+                case(4):
+                    absParams.gravity = Gravity.CENTER;
+                    //absParams.leftMargin=95;
+                    //absParams.topMargin =94;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
+                case(5):
+                    absParams.gravity = Gravity.CENTER_VERTICAL|Gravity.RIGHT;
+                    //absParams.leftMargin= 190;
+                    //absParams.topMargin =94;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
+                case(6):
+                    absParams.gravity = Gravity.LEFT |Gravity.BOTTOM;
+                    //absParams.leftMargin= 0;
+                    //absParams.topMargin = 188;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
+                case(7):
+                    absParams.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+                    // absParams.leftMargin= 95;
+                    //absParams.topMargin = 188;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
+                case(8):
+                    absParams.gravity = Gravity.BOTTOM|Gravity.RIGHT ;
+                    //absParams.leftMargin= 190;
+                    //absParams.topMargin = 188;
+                    buttons[text].setLayoutParams(absParams);
+                    break;
 
-
-                }
 
             }
 
         }
+
+    }
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -317,28 +317,20 @@ public class Game extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-        public int find_pos(int element)
+    public int find_pos(int element)
+    {
+        int i=0;
+        for(i=0;i<9;i++)
         {
-            int i=0;
-            for(i=0;i<9;i++)
+            if(cells.get(i)==element)
             {
-                if(cells.get(i)==element)
-                {
-                    break;
-                }
+                break;
             }
-            return i;
-
         }
+        return i;
 
-    public void nuevo(View view) {
-        Intent nuevol = new Intent(this, score.class);
-        mensaje=t.getText().toString();
-        // movimientos1=moveCounter.getText().toString();
-        nuevol.putExtra("info",mensaje);
-        nuevol.putExtra("moviemientos",movimientos1);
-        startActivity(nuevol);
     }
 
-}
 
+
+}

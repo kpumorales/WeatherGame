@@ -18,22 +18,15 @@ public class main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Button btn1 = (Button) findViewById(R.id.PlayButton);
+        final Button btn1 = (Button) findViewById(R.id.PlayButton);
+        final EditText editText=(EditText)findViewById(R.id.editText);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Do something after 5s = 5000ms
-                        mensaje=editText.getText().toString();
-                        Intent i = new Intent(main.this, Game.class);
-                        i.putExtra("info",mensaje);
-                        startActivity(i);
-                    }
-                }, 2000);
-
+                mensaje=editText.getText().toString();
+                Intent i = new Intent(main.this, Game.class);
+                i.putExtra("info",mensaje);
+                startActivity(i);
             }
         });
     }
