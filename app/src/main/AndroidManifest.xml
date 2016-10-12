@@ -18,8 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Game"
-            android:screenOrientation="portrait" />
+            android:name=".Game"/>
         <activity
             android:name=".Credits"
             android:screenOrientation="portrait" />
