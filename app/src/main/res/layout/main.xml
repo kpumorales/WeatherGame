@@ -16,10 +16,9 @@
     <ImageView
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:id="@+id/imageView"
+        android:id="@+id/imglogo"
         android:background="@mipmap/ic_launcher"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.20"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -30,24 +29,24 @@
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:textColor="#fff"
-        android:textColorHighlight="@color/abc_primary_text_disable_only_material_dark"
         android:textSize="30sp"
-        android:layout_below="@+id/imageView"
-        android:layout_alignStart="@+id/PlayButton"
+        android:layout_below="@+id/imglogo"
         android:layout_marginTop="48dp"
         android:textAlignment="center"
         android:textStyle="bold|italic"
-        android:typeface="monospace" />
+        android:typeface="monospace"
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:layout_width="289dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/boton"
+        android:layout_height="@dimen/boton"
         android:text="@string/play_button"
         android:id="@+id/PlayButton"
         android:layout_gravity="center_vertical|bottom"
-        android:layout_marginLeft="24dp"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/button"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="20sp" />
 </RelativeLayout>
