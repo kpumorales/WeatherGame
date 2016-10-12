@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import static android.view.Gravity.LEFT;
 import static android.view.Gravity.TOP;
@@ -37,7 +38,7 @@ public class Game extends AppCompatActivity {
     Bundle b;
 
     String nombre,mensaje,numero,movimientos1="0";
-    private ArrayList<Integer> cells = new ArrayList<Integer>();
+    private ArrayList<Integer> cells = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class Game extends AppCompatActivity {
         //mp.start();
         buttons=findButtons();
         moveCounter = (TextView) findViewById(R.id.MoveCounter);
-        feedbackText = (TextView) findViewById(R.id.FeedbackText);
+        //feedbackText = (TextView) findViewById(R.id.FeedbackText);
         feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
         chance= (TextView) findViewById(R.id.chance);
         t=(TextView)findViewById(R.id.textView6);
@@ -171,7 +172,7 @@ public class Game extends AppCompatActivity {
                 break;
         }
 
-        if(bad_move==true)
+        if(bad_move)
         {
             //Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
             MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
@@ -198,7 +199,7 @@ public class Game extends AppCompatActivity {
 
         for(int i=0;i<9;i++)
         {
-            if(cells.get(i)!=goal[i])
+            if(!Objects.equals(cells.get(i), goal[i]))
             {
                 return;
             }
