@@ -16,12 +16,13 @@ public class main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Button btn1 = (Button) findViewById(R.id.PlayButton);
+        final Button btn1 = (Button) findViewById(R.id.PlayButton);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                Intent i = new Intent(main.this, Game.class);
                startActivity(i);
+                btn1.setBackgroundResource(R.drawable.button1);
             }
         });
     }
