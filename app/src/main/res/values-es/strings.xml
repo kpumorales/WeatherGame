@@ -17,4 +17,5 @@
     <string name="imagefooter">Actualidad</string>
     <string name="hintzoom">Ver Imagen</string>
     <string name="score">Puntuacion</string>
+    <string name="name">Escribe tu nombre</string>
 </resources>

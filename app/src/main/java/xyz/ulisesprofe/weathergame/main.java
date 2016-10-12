@@ -9,19 +9,31 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class main extends AppCompatActivity {
-
+    String mensaje;
+    EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        final Button btn1 = (Button) findViewById(R.id.PlayButton);
+        Button btn1 = (Button) findViewById(R.id.PlayButton);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent i = new Intent(main.this, Game.class);
-               startActivity(i);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+                        mensaje=editText.getText().toString();
+                        Intent i = new Intent(main.this, Game.class);
+                        i.putExtra("info",mensaje);
+                        startActivity(i);
+                    }
+                }, 2000);
+
             }
         });
     }

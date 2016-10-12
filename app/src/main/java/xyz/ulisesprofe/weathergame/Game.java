@@ -35,9 +35,9 @@ public class Game extends AppCompatActivity {
         static int cont=3;
         TextView t;
         Bundle b;
+        String nombre,mensaje,numero,movimientos1="0";
 
-    String nombre,mensaje,numero,movimientos1="0";
-        private ArrayList<Integer> cells = new ArrayList<Integer>();
+    private ArrayList<Integer> cells = new ArrayList<Integer>();
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -52,6 +52,11 @@ public class Game extends AppCompatActivity {
             feedbackText = (TextView) findViewById(R.id.FeedbackText);
             feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
             chance= (TextView) findViewById(R.id.chance);
+
+            t=(TextView)findViewById(R.id.textView6);
+            b=getIntent().getExtras();
+            nombre=b.getString("info");
+            t.setText(nombre);
 
             for(int i=0;i<9;i++)
             {
@@ -204,6 +209,7 @@ public class Game extends AppCompatActivity {
             MediaPlayer win = MediaPlayer.create(this,R.raw.win);
             win.start();
             feedbackText.setText("Ganaste");
+            puntuacion();
             buttons[0].setBackgroundResource(R.drawable.f0);
 
             final Handler handler = new Handler();
@@ -218,7 +224,11 @@ public class Game extends AppCompatActivity {
 
             }
 
-        public void fill_grid()
+    private void puntuacion() {
+        movimientos1=moveCounter.getText().toString();
+    }
+
+    public void fill_grid()
         {
             for(int i=0;i<9;i++)
             {
