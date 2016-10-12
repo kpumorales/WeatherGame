@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -206,26 +207,23 @@ public class Game extends AppCompatActivity {
         MediaPlayer win = MediaPlayer.create(this,R.raw.win);
         win.start();
         feedbackText.setText("Ganaste");
-        scoreWin();
         buttons[0].setBackgroundResource(R.drawable.f0);
-
+        final TextView textView=(TextView) findViewById(R.id.MoveCounter);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Do something after 5s = 5000ms
+               // movimientos1=moveCounter.getText().toString();
                 Intent i = new Intent(Game.this, Win.class);
-                i.putExtra("mov",movimientos1);
+               // i.putExtra("mov",movimientos1);
                 startActivity(i);
             }
         }, 2000);
 
     }
 
-    private void scoreWin() {
-        movimientos1=moveCounter.getText().toString();
 
-    }
 
     public void fill_grid()
     {
