@@ -22,7 +22,6 @@ public class main extends AppCompatActivity {
             public void onClick(View v) {
                Intent i = new Intent(main.this, Game.class);
                startActivity(i);
-                btn1.setBackgroundResource(R.drawable.button1);
             }
         });
     }
