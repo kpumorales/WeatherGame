@@ -51,7 +51,7 @@ public class Game extends AppCompatActivity {
         Displayname= (TextView) findViewById(R.id.displayname);
 
         nombre= getIntent().getExtras().getString("nombre");
-        Displayname.setText(nombre+"\n");
+        Displayname.setText(nombre);
         for(int i=0;i<9;i++)
         {
             this.cells.add(i);
