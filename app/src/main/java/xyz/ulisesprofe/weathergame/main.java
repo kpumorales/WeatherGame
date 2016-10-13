@@ -13,8 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class main extends AppCompatActivity {
-    String mensaje;
-    EditText editText;
+    String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,19 +21,18 @@ public class main extends AppCompatActivity {
         final Button btn1 = (Button) findViewById(R.id.PlayButton);
         final EditText editText=(EditText)findViewById(R.id.editText);
         editText.setText("");
-
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mensaje=editText.getText().toString();
-                if (mensaje.isEmpty())
+                nombre=editText.getText().toString();
+                if (nombre.isEmpty())
                 {
                     Toast.makeText(main.this, "Para comenzar escriba un nombre", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     Intent i = new Intent(main.this, Game.class);
-                    i.putExtra("info",mensaje);
+                    i.putExtra("nombre",nombre);
                     startActivity(i);
                 }
             }

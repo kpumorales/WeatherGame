@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,16 +20,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 import static android.view.Gravity.LEFT;
 import static android.view.Gravity.TOP;
 
 public class Game extends AppCompatActivity {
-    private TextView moveCounter;
-    private TextView feedbackText;
-    private TextView feedbackTitleText;
-    private TextView chance;
+    private TextView moveCounter,feedbackText,feedbackTitleText, chance, Displayname;
     private Button[] buttons;
     private Boolean bad_move=false;
     private static final Integer[] goal = new Integer[] {0,1,2,3,4,5,6,7,8};
@@ -38,9 +33,8 @@ public class Game extends AppCompatActivity {
     static int cont=3;
     TextView t;
     Bundle b;
-
     String nombre,mensaje,numero,movimientos1="0";
-    private ArrayList<Integer> cells = new ArrayList<>();
+    private ArrayList<Integer> cells = new ArrayList<Integer>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +46,12 @@ public class Game extends AppCompatActivity {
         //mp.start();
         buttons=findButtons();
         moveCounter = (TextView) findViewById(R.id.MoveCounter);
-        //feedbackText = (TextView) findViewById(R.id.FeedbackText);
         feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
         chance= (TextView) findViewById(R.id.chance);
-        t=(TextView)findViewById(R.id.textView6);
-        b=getIntent().getExtras();
-        nombre=b.getString("info");
-        t.setText(nombre);
+        Displayname= (TextView) findViewById(R.id.displayname);
+
+        nombre= getIntent().getExtras().getString("nombre");
+        Displayname.setText(nombre);
         for(int i=0;i<9;i++)
         {
             this.cells.add(i);
@@ -69,14 +62,18 @@ public class Game extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Collections.shuffle(cells); //random cells array
-                fill_grid();
-                moveCounter.setText("0");
-                buttons[0].setBackgroundResource(R.drawable.transparente);
-                zoomImage.setEnabled(true);
-                zoomImage.setBackgroundResource(R.drawable.zoom);
-                cont=3;
-                chance.setText(String.valueOf(cont));
+
+                Intent i = new Intent(Game.this, Win.class);
+                i.putExtra("movimientos",moveCounter.getText());
+                startActivity(i);
+                //Collections.shuffle(cells); //random cells array
+                //fill_grid();
+                //moveCounter.setText("0");
+                //buttons[0].setBackgroundResource(R.drawable.transparente);
+                //zoomImage.setEnabled(true);
+                //zoomImage.setBackgroundResource(R.drawable.zoom);
+                //cont=3;
+                //chance.setText(String.valueOf(cont));
 
             }
         });
@@ -174,16 +171,14 @@ public class Game extends AppCompatActivity {
                 break;
         }
 
-        if(bad_move)
+        if(bad_move==true)
         {
-            //Toast.makeText(Game.this, "Movimiento no permitido", Toast.LENGTH_SHORT).show();
-            MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
+          MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
             mal.start();
             return;
         }
         MediaPlayer ok= MediaPlayer.create(this,R.raw.movimiento);
         ok.start();
-        //Toast.makeText(Game.this, "Movimiento permitido", Toast.LENGTH_SHORT).show();
         cells.remove(b_pos);
         cells.add(b_pos, 0);
         cells.remove(zuk_pos);
@@ -201,31 +196,28 @@ public class Game extends AppCompatActivity {
 
         for(int i=0;i<9;i++)
         {
-            if(!Objects.equals(cells.get(i), goal[i]))
+            if(cells.get(i)!=goal[i])
             {
                 return;
             }
         }
         MediaPlayer win = MediaPlayer.create(this,R.raw.win);
         win.start();
-        feedbackText.setText("Ganaste");
         buttons[0].setBackgroundResource(R.drawable.f0);
-        final TextView textView=(TextView) findViewById(R.id.MoveCounter);
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Do something after 5s = 5000ms
-               // movimientos1=moveCounter.getText().toString();
                 Intent i = new Intent(Game.this, Win.class);
-               // i.putExtra("mov",movimientos1);
+                //i.putExtra("nombre",nombre);
+                i.putExtra("movimientos",moveCounter.getText());
                 startActivity(i);
             }
         }, 2000);
 
     }
-
-
 
     public void fill_grid()
     {
@@ -241,50 +233,34 @@ public class Game extends AppCompatActivity {
                     break;
                 case(1):
                     absParams.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL ;
-                    //absParams.leftMargin= 140;
-                    //absParams.topMargin = 0;
                     buttons[text].setLayoutParams(absParams);
                     break;
                 case(2):
                     absParams.gravity= Gravity.TOP|Gravity.RIGHT ;
-                    //absParams.leftMargin= 280;
-                    //absParams.topMargin = 0;
                     buttons[text].setLayoutParams(absParams);
                     break;
                 case(3):
                     absParams.gravity = Gravity.LEFT|Gravity.CENTER_VERTICAL ;
-                    //absParams.leftMargin= 0;
-                    //absParams.topMargin = 94;
                     buttons[text].setLayoutParams(absParams);
                     break;
                 case(4):
                     absParams.gravity = Gravity.CENTER;
-                    //absParams.leftMargin=95;
-                    //absParams.topMargin =94;
                     buttons[text].setLayoutParams(absParams);
                     break;
                 case(5):
                     absParams.gravity = Gravity.CENTER_VERTICAL|Gravity.RIGHT;
-                    //absParams.leftMargin= 190;
-                    //absParams.topMargin =94;
                     buttons[text].setLayoutParams(absParams);
                     break;
                 case(6):
                     absParams.gravity = Gravity.LEFT |Gravity.BOTTOM;
-                    //absParams.leftMargin= 0;
-                    //absParams.topMargin = 188;
                     buttons[text].setLayoutParams(absParams);
                     break;
                 case(7):
                     absParams.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
-                    // absParams.leftMargin= 95;
-                    //absParams.topMargin = 188;
                     buttons[text].setLayoutParams(absParams);
                     break;
                 case(8):
                     absParams.gravity = Gravity.BOTTOM|Gravity.RIGHT ;
-                    //absParams.leftMargin= 190;
-                    //absParams.topMargin = 188;
                     buttons[text].setLayoutParams(absParams);
                     break;
 
@@ -305,7 +281,6 @@ public class Game extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.exitmenu:
                 finish();
-                System.exit(0);
                 break;
             case R.id.helpmenu:
                 Intent intent = new Intent(getApplicationContext(), Help.class);
@@ -331,7 +306,7 @@ public class Game extends AppCompatActivity {
         return i;
 
     }
-    //boton back del celular
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -344,5 +319,14 @@ public class Game extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    //public void nuevo(View view) {
+    //    Intent nuevol = new Intent(this, score.class);
+    //    mensaje=t.getText().toString();
+    //    // movimientos1=moveCounter.getText().toString();
+    //    nuevol.putExtra("info",mensaje);
+    //    nuevol.putExtra("moviemientos",movimientos1);
+    //    startActivity(nuevol);
+    //}
 
 }
+

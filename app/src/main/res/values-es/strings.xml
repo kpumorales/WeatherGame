@@ -20,4 +20,5 @@
     <string name="name">Escribe tu nombre</string>
     <string name="singin">Escribe tu nombre </string>
     <string name="setPlayerName">Jugador</string>
+    <string name="winmessage">Your record is</string>
 </resources>
