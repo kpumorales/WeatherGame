@@ -16,12 +16,13 @@ public class Win extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win);
-        //movimientos= getIntent().getExtras().getString("movimientos");
+        movimientos= getIntent().getExtras().getString("movimientos");
         nombre= getIntent().getExtras().getString("nombre");
 
         try {
             OutputStreamWriter fout= new OutputStreamWriter(openFileOutput("marcador.txt", Context.MODE_APPEND));
             fout.write(nombre);
+            fout.write(movimientos);
             fout.close();
         }
         catch (Exception ex)
