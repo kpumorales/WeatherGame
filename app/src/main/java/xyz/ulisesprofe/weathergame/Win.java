@@ -7,25 +7,19 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Win extends AppCompatActivity {
-    //String nombre;
-    //Bundle b;
-    //TextView t;
-    TextView puntuacion;
+    String nombre,movimientos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win);
-        puntuacion= (TextView) findViewById(R.id.puntuacion);
-
-        String movimientos= getIntent().getExtras().getString("movimientos");
-        puntuacion.setText(movimientos);
-       // score();
+        movimientos= getIntent().getExtras().getString("movimientos");
+        nombre= getIntent().getExtras().getString("nombre");
     }
-    //public void score() {
-      //  t=(TextView)findViewById(R.id.textView);
-       // b=getIntent().getExtras();
-        //nombre=b.getString("mov");
 
-        //t.setText(nombre);
-    //}
+    public void score(View view) {
+        Intent i = new Intent(Win.this, Score.class);
+        i.putExtra("movimientos",movimientos);
+        i.putExtra("nombre",nombre);
+        startActivity(i);
+    }
 }

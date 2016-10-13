@@ -19,4 +19,5 @@
     <string name="singin">Write your name</string>
     <string name="setPlayerName">Player</string>
     <string name="winmessage">Your record is</string>
+    <string name="scorebutton">Score</string>
 </resources>

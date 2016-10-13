@@ -65,6 +65,7 @@ public class Game extends AppCompatActivity {
 
                 Intent i = new Intent(Game.this, Win.class);
                 i.putExtra("movimientos",moveCounter.getText());
+                i.putExtra("nombre",Displayname.getText());
                 startActivity(i);
                 //Collections.shuffle(cells); //random cells array
                 //fill_grid();
