@@ -1,8 +1,10 @@
 package xyz.ulisesprofe.weathergame;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,5 +33,16 @@ public class Score extends AppCompatActivity {
         {
             Log.e("Ficheros", "Error al leer fichero desde memoria interna");
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent i = new Intent(Score.this,main.class);
+            startActivity(i);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
