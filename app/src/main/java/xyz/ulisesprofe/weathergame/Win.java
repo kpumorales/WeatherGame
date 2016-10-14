@@ -10,9 +10,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 public class Win extends AppCompatActivity {
-    String nombre,movimientos;
+    String nombre,movimientos,dato;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +21,11 @@ public class Win extends AppCompatActivity {
         //setContentView(R.layout.win);
         movimientos= getIntent().getExtras().getString("movimientos");
         nombre= getIntent().getExtras().getString("nombre");
-
+        dato=movimientos+" - "+nombre+"\n";
         try {
             OutputStreamWriter fout= new OutputStreamWriter(openFileOutput("marcador.txt", Context.MODE_APPEND));
-            fout.write(movimientos+" - "+nombre+"\n");
+            //ArrayList String = new ArrayList();
+            fout.write(dato);
             fout.close();
         }
         catch (Exception ex)
