@@ -12,27 +12,42 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static xyz.ulisesprofe.weathergame.R.id.listView;
 
 public class Score extends AppCompatActivity {
-    TextView text;
+    ListView listView1;
+    static ArrayList<String> lines;
+    static String line;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score);
-        text= (TextView) findViewById(R.id.textView6);
+        listView1 = (ListView) findViewById(R.id.listView);
         try{
-            BufferedReader fin = new BufferedReader(new InputStreamReader(openFileInput("marcador.txt")));
-            String texto = fin.readLine();
-            fin.close();
-            text.setText(texto);
+            BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput("marcador.txt")));
 
+            lines = new ArrayList<String>();
+            while ((line = br.readLine()) != null) {
+                lines.add(line);
+
+            }
+
+            br.close();
+            Collections.sort(lines);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,lines);
+
+
+            listView1.setAdapter(adapter);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception ex)
-        {
-            Log.e("Ficheros", "Error al leer fichero desde memoria interna");
-        }
+
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
@@ -45,4 +60,7 @@ public class Score extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+
 }

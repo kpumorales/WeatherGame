@@ -23,8 +23,7 @@ public class Win extends AppCompatActivity {
 
         try {
             OutputStreamWriter fout= new OutputStreamWriter(openFileOutput("marcador.txt", Context.MODE_APPEND));
-            fout.write(movimientos+" "+nombre+" ");
-            //fout.write(movimientos+"\n\n");
+            fout.write(movimientos+" - "+nombre+"\n");
             fout.close();
         }
         catch (Exception ex)

@@ -11,16 +11,35 @@
     android:background="@android:color/holo_blue_light">
 
     <ListView
-        android:layout_width="163dp"
-        android:layout_height="268dp"
+        android:layout_width="117dp"
+        android:layout_height="435dp"
         android:id="@+id/listView"
         android:textAlignment="center"
-        android:layout_gravity="center_horizontal|top" />
+        android:layout_gravity="center"
+
+        />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/trofeo1"
+        android:layout_gravity="left|top"
+        android:background="@drawable/trofeo" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/trofeo2"
+        android:layout_gravity="right|top"
+        android:background="@drawable/trofeo" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="156dp"
-        android:text="New Text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/score"
         android:id="@+id/textView6"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:layout_gravity="center_horizontal|top"
+        android:textSize="@dimen/nombreGame"
+        android:textAlignment="center" />
+
 </FrameLayout>
