@@ -107,7 +107,7 @@ public class Game extends AppCompatActivity {
         }
 
 
-        moveCounter.setText("0");
+        moveCounter.setText("00");
         Toast.makeText(Game.this, R.string.game_feedback_text, Toast.LENGTH_SHORT).show();
     }
     public Button[] findButtons() {
