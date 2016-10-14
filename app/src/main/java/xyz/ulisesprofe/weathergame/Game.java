@@ -25,7 +25,7 @@ import static android.view.Gravity.LEFT;
 import static android.view.Gravity.TOP;
 
 public class Game extends AppCompatActivity {
-    private TextView moveCounter,feedbackText,feedbackTitleText, chance, Displayname;
+    private TextView moveCounter,feedbackTitleText, chance, Displayname;
     private Button[] buttons;
     private Boolean bad_move=false;
     private static final Integer[] goal = new Integer[] {0,1,2,3,4,5,6,7,8};
@@ -33,7 +33,7 @@ public class Game extends AppCompatActivity {
     static int cont=3;
     TextView t;
     Bundle b;
-    String nombre,mensaje,numero,movimientos1="0";
+    String nombre;
     private ArrayList<Integer> cells = new ArrayList<Integer>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
