@@ -63,18 +63,14 @@ public class Game extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(Game.this, Win.class);
-                i.putExtra("movimientos",moveCounter.getText());
-                i.putExtra("nombre",Displayname.getText());
-                startActivity(i);
-                //Collections.shuffle(cells); //random cells array
-                //fill_grid();
-                //moveCounter.setText("0");
-                //buttons[0].setBackgroundResource(R.drawable.transparente);
-                //zoomImage.setEnabled(true);
-                //zoomImage.setBackgroundResource(R.drawable.zoom);
-                //cont=3;
-                //chance.setText(String.valueOf(cont));
+                Collections.shuffle(cells); //random cells array
+                fill_grid();
+                moveCounter.setText("0");
+                buttons[0].setBackgroundResource(R.drawable.transparente);
+                zoomImage.setEnabled(true);
+                zoomImage.setBackgroundResource(R.drawable.zoom);
+                cont=3;
+                chance.setText(String.valueOf(cont));
 
             }
         });
@@ -127,6 +123,8 @@ public class Game extends AppCompatActivity {
 
 
     public void makeMove(final Button b) {
+        MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
+        MediaPlayer ok= MediaPlayer.create(this,R.raw.movimiento);
         bad_move=true;
         int b_text,b_pos,zuk_pos;
         b_text=Integer.parseInt((String) b.getText());//toma el texto del boton
@@ -174,11 +172,10 @@ public class Game extends AppCompatActivity {
 
         if(bad_move==true)
         {
-          MediaPlayer mal= MediaPlayer.create(this,R.raw.mal);
+
             mal.start();
             return;
         }
-        MediaPlayer ok= MediaPlayer.create(this,R.raw.movimiento);
         ok.start();
         cells.remove(b_pos);
         cells.add(b_pos, 0);
@@ -212,8 +209,8 @@ public class Game extends AppCompatActivity {
             public void run() {
                 // Do something after 5s = 5000ms
                 Intent i = new Intent(Game.this, Win.class);
-                //i.putExtra("nombre",nombre);
                 i.putExtra("movimientos",moveCounter.getText());
+                i.putExtra("nombre",Displayname.getText());
                 startActivity(i);
             }
         }, 2000);
@@ -320,15 +317,5 @@ public class Game extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
-    //public void nuevo(View view) {
-    //    Intent nuevol = new Intent(this, score.class);
-    //    mensaje=t.getText().toString();
-    //    // movimientos1=moveCounter.getText().toString();
-    //    nuevol.putExtra("info",mensaje);
-    //    nuevol.putExtra("moviemientos",movimientos1);
-    //    startActivity(nuevol);
-    //}
-
 }
 

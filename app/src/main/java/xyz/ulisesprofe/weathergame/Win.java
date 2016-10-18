@@ -13,7 +13,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class Win extends AppCompatActivity {
-    String nombre,movimientos,dato;
+    String nombre,movimientos,dato,mov;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +21,23 @@ public class Win extends AppCompatActivity {
         //setContentView(R.layout.win);
         movimientos= getIntent().getExtras().getString("movimientos");
         nombre= getIntent().getExtras().getString("nombre");
-        dato=movimientos+" - "+nombre+"\n";
+        if (movimientos.length()==1)
+        {
+            mov="000"+movimientos;
+        }
+        else
+        if(movimientos.length()==2)
+        {
+            mov="00"+movimientos;
+        }
+        else
+        {
+            if(movimientos.length()==3)
+            {
+                mov="0"+movimientos;
+            }
+        }
+        dato=mov+" - "+nombre+"\n";
         try {
             OutputStreamWriter fout= new OutputStreamWriter(openFileOutput("marcador.txt", Context.MODE_APPEND));
             //ArrayList String = new ArrayList();

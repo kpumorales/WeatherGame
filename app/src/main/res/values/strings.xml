@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Weather Game</string>
+    <string name="app_name">Weather Puzzle Game</string>
     <string name="play_button">Play</string>
     <string name="exit">Exit</string>
     <string name="feedback_title">Feedback: </string>
     <string name="moves_title">Moves</string>
-    <string name="game_feedback_text">No feedback yet!</string>
+    <string name="game_feedback_text">Make a move</string>
     <string name="credits">Credits</string>
     <string name="name1">Ulises Morales Ramirez</string>
-    <string name="team">and your team</string>
+    <string name="team">Josemanuel Magaña</string>
     <string name="message">Thanks for play!</string>
     <string name="help">Help</string>
     <string name="message2">Move the selected piece together the blank, only just a click</string>
@@ -20,4 +20,6 @@
     <string name="setPlayerName">Player</string>
     <string name="winmessage">Your record is</string>
     <string name="scorebutton">Score</string>
+    <string name="name">Write your name</string>
+    <string name="before">Before</string>
 </resources>

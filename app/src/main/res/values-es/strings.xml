@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="play_button">Jugar</string>
-    <string name="app_name">Juego del Clima </string>
+    <string name="app_name">Rompecabezas del Clima </string>
     <string name="exit">Salir</string>
     <string name="feedback_title">Consejos</string>
     <string name="moves_title">Movimientos</string>
     <string name="game_feedback_text">Mueva una pieza</string>
     <string name="credits">Creditos</string>
     <string name="name1">Ulises Morales Ramirez</string>
-    <string name="team">y su equipo</string>
+    <string name="team">Josemanuel Magaña</string>
     <string name="message">Gracias por jugar</string>
     <string name="help">Ayuda</string>
     <string name="message2">Mueva la pieza seleccionada junto al espacio en blanco, solo basta un click</string>
     <string name="shuffle">Reiniciar</string>
     <string name="win">El cambio climático es la mayor amenaza ambiental a la que se enfrenta la humanidad. Sus consecuencias afectan sobre todo a los países en vías de desarrollo y se traducen en inundaciones, sequía, huracanes y todo tipo de desastres naturales que dejan a la población desvalida y sin medios para subsistir</string>
-    <string name="imagefooter">Actualidad</string>
+    <string name="imagefooter">Ahora</string>
     <string name="hintzoom">Ver Imagen</string>
     <string name="score">Puntuacion</string>
     <string name="name">Escribe tu nombre</string>
@@ -22,4 +22,5 @@
     <string name="setPlayerName">Jugador</string>
     <string name="winmessage">Your record is</string>
     <string name="scorebutton">Puntuacion</string>
+    <string name="before">Antes</string>
 </resources>
