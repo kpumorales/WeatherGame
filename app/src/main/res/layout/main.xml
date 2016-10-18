@@ -21,7 +21,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView"
-        android:contentDescription="planeta" />
+        android:contentDescription="planeta"
+        android:layout_above="@+id/textView" />
 
     <TextView
         android:layout_width="fill_parent"

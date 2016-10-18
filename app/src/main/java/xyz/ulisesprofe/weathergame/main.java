@@ -1,9 +1,11 @@
 package xyz.ulisesprofe.weathergame;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.KeyListener;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,7 +42,7 @@ public class main extends AppCompatActivity {
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu2, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -59,6 +61,9 @@ public class main extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), Credits.class);
                 startActivity(i);
                 break;
+            case R.id.Scoremenu:
+                Intent i2 = new Intent(getApplicationContext(), Score.class);
+                startActivity(i2);
         }
         return super.onOptionsItemSelected(item);
     }

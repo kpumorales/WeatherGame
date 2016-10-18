@@ -22,4 +22,6 @@
     <string name="scorebutton">Score</string>
     <string name="name">Write your name</string>
     <string name="before">Before</string>
+    <string name="lose">YOU HAVE EXCEEDED THE LIMIT OF 500 MOVEMENTS</string>
+    <string name="messagelose">YOU LOSE</string>
 </resources>

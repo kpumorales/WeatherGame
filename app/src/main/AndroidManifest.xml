@@ -29,7 +29,8 @@
         <activity android:name=".Zoom" />
         <activity android:name=".Win" />
         <activity android:name=".Dificil" />
-        <activity android:name=".Score"></activity>
+        <activity android:name=".Score" />
+        <activity android:name=".Perdiste"></activity>
     </application>
 
 </manifest>

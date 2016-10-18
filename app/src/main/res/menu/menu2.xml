@@ -14,5 +14,9 @@
         android:id="@+id/creditsmenu"
         android:title="@string/credits"
         android:icon="@android:drawable/ic_menu_info_details" />
+    <item
+        android:id="@+id/Scoremenu"
+        android:title="@string/score"
+        android:icon="@android:drawable/ic_menu_info_details" />
 
 </menu>

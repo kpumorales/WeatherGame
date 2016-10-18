@@ -30,7 +30,7 @@ public class Game extends AppCompatActivity {
     private Boolean bad_move=false;
     private static final Integer[] goal = new Integer[] {0,1,2,3,4,5,6,7,8};
     private String[] array=new String[]{"Cuida el agua","No tires basura","Recicla","Apaga las luces"};
-    static int cont=3;
+    static int cont=0;
     TextView t;
     Bundle b;
     String nombre;
@@ -49,7 +49,7 @@ public class Game extends AppCompatActivity {
         feedbackTitleText= (TextView) findViewById(R.id.FeedbackTitleText);
         chance= (TextView) findViewById(R.id.chance);
         Displayname= (TextView) findViewById(R.id.displayname);
-
+        cont=3;
         nombre= getIntent().getExtras().getString("nombre");
         Displayname.setText(nombre);
         for(int i=0;i<9;i++)
@@ -69,9 +69,11 @@ public class Game extends AppCompatActivity {
                 buttons[0].setBackgroundResource(R.drawable.transparente);
                 zoomImage.setEnabled(true);
                 zoomImage.setBackgroundResource(R.drawable.zoom);
-                cont=3;
-                chance.setText(String.valueOf(cont));
-
+                if(cont==0) {
+                    zoomImage.setEnabled(false);
+                    zoomImage.setBackgroundResource(R.drawable.zoom2);
+                    Toast.makeText(Game.this, "Acabaste tu ayuda", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -174,9 +176,21 @@ public class Game extends AppCompatActivity {
         {
 
             mal.start();
+            mal.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mal) {
+                    mal.release();
+
+                };
+            });
             return;
         }
         ok.start();
+        ok.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer ok) {
+                ok.release();
+
+            };
+        });
         cells.remove(b_pos);
         cells.add(b_pos, 0);
         cells.remove(zuk_pos);
@@ -186,6 +200,11 @@ public class Game extends AppCompatActivity {
         fill_grid();
         moveCounter.setText(Integer.toString(Integer.parseInt((String) moveCounter.getText())+1));
         int num=Integer.parseInt((String) moveCounter.getText());
+        if(num==500)
+        {
+            Intent i=new Intent(Game.this,Perdiste.class);
+            startActivity(i);
+        }
         if( num%10==0)
         {
             double aleatorio = Math.floor(Math.random()*(array.length));
@@ -201,6 +220,12 @@ public class Game extends AppCompatActivity {
         }
         MediaPlayer win = MediaPlayer.create(this,R.raw.win);
         win.start();
+        win.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(MediaPlayer win) {
+                win.release();
+
+            };
+        });
         buttons[0].setBackgroundResource(R.drawable.f0);
 
         final Handler handler = new Handler();

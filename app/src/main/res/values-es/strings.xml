@@ -23,4 +23,6 @@
     <string name="winmessage">Your record is</string>
     <string name="scorebutton">Puntuacion</string>
     <string name="before">Antes</string>
+    <string name="lose">HAS SOBREPASADO EL LIMITE DE 500 MOVIMIENTOS</string>
+    <string name="messagelose">HAS PERDIDO</string>
 </resources>
